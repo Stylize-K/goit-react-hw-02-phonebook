@@ -48,7 +48,7 @@ export class App extends Component {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          fontSize: 40,
+          fontSize: 24,
           color: '#010101',
         }}
       >
@@ -66,6 +66,7 @@ export class App extends Component {
               required
             />
           </label>
+          <br />
           <label>
             Number
             <input
@@ -78,6 +79,7 @@ export class App extends Component {
               required
             />
           </label>
+          <br />
           <button type="submit">Add contact</button>
         </form>
         <h2>Contacts</h2>
