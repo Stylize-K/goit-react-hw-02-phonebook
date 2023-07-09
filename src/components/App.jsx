@@ -13,15 +13,18 @@ export class App extends Component {
     number: '',
   };
 
+  //Метод генерації id. Функція nanoid()  приймає необов'язковий аргумент, що задає довжину id
   generetedId = () => {
-    return nanoid();
+    return nanoid(5);
   };
 
+  // Метод оновлення полів інпутів
   handleChange = event => {
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
   };
 
+  // Метод сабміту форми
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
@@ -35,6 +38,7 @@ export class App extends Component {
     this.resetForm();
   };
 
+  //Метод очищення полів форми
   resetForm = () => {
     this.setState({ name: '', number: '' });
   };
