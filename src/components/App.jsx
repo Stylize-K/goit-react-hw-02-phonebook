@@ -3,8 +3,14 @@ import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
-    contacts: [{ id: 'id-1', name: 'Rosie Simpson' }],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     name: '',
+    number: '',
   };
 
   generetedId = () => {
@@ -19,10 +25,18 @@ export class App extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
-    const { contacts, name } = this.state;
+    const { contacts, name, number } = this.state;
     this.setState({
-      contacts: [...contacts, { id: this.generetedId(), name: name }],
+      contacts: [
+        ...contacts,
+        { id: this.generetedId(), name: name, number: number },
+      ],
     });
+    this.resetForm();
+  };
+
+  resetForm = () => {
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -40,7 +54,7 @@ export class App extends Component {
       >
         <h1>Phonebook</h1>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor={this.generetedId()}>
+          <label>
             Name
             <input
               type="text"
@@ -52,12 +66,26 @@ export class App extends Component {
               required
             />
           </label>
+          <label>
+            Number
+            <input
+              type="tel"
+              name="number"
+              value={this.state.number}
+              onChange={this.handleChange}
+              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+            />
+          </label>
           <button type="submit">Add contact</button>
         </form>
-        <h2>Contact</h2>
+        <h2>Contacts</h2>
         <ul>
           {this.state.contacts.map(contact => (
-            <li key={contact.id}>{contact.name}</li>
+            <li key={contact.id}>
+              {contact.name}: {contact.number}
+            </li>
           ))}
         </ul>
       </div>
