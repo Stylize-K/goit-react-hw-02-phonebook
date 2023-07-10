@@ -1,0 +1,28 @@
+.list_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid black;
+  list-style: none;
+  width: 400px;
+  border-radius: 5px;
+  background-color: #dbf4ff;
+}
+
+.button_delete {
+  cursor: pointer;
+  border: 2px solid red;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.button_delete:hover,
+.button_delete:focus {
+  cursor: pointer;
+  border: 2px solid red;
+  background-color: red;
+  font-weight: 700;
+  border-radius: 5px;
+  color: white;
+}
