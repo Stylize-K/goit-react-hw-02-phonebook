@@ -17,10 +17,15 @@ export class App extends Component {
 
   //Метод обробки сабміту форми - додаємо дані в state (дані отримуємо з компонента ContactForm)
   formSubmitHandler = data => {
+    const { contacts } = this.state;
     console.log(data);
+    if (contacts.some(contact => contact.name === data.name)) {
+      alert(`${data.name} is already in contacts.`);
+      return;
+    }
     this.setState({
       contacts: [
-        ...this.state.contacts,
+        ...contacts,
         { id: this.generetedId(), name: data.name, number: data.number },
       ],
     });
