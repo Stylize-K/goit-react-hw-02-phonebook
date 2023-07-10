@@ -76,6 +76,10 @@ export class App extends Component {
         <h1 className={css.title}>Phonebook</h1>
         <ContactForm onSubmit={this.formSubmitHandler} />
         <h2 className={css.subtitle}>Contacts</h2>
+        <p className={css.total}>
+          Total contacts:
+          <span className={css.total_count}> {this.state.contacts.length}</span>
+        </p>
         <Filter value={this.state.filter} onChange={this.handleChangeFilter} />
         <ContactList
           filteredContacts={filteredContacts}

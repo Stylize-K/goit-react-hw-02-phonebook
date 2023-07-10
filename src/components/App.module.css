@@ -5,3 +5,12 @@
 .subtitle {
   margin: 25px 0 25px 0;
 }
+
+.total {
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.total_count {
+  font-weight: 700;
+}
