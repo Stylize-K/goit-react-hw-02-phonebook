@@ -19,6 +19,7 @@ export class App extends Component {
   formSubmitHandler = data => {
     const { contacts } = this.state;
     console.log(data);
+    //Заборона додавати контакти, імена яких вже присутні у телефонній книзі.
     if (contacts.some(contact => contact.name === data.name)) {
       alert(`${data.name} is already in contacts.`);
       return;
