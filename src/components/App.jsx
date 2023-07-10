@@ -46,6 +46,13 @@ export class App extends Component {
     );
   };
 
+  //Метод видалення контакту зі списку контактів
+  deleteContact = deleteId => {
+    this.setState(PrevState => ({
+      contacts: PrevState.contacts.filter(contact => contact.id !== deleteId),
+    }));
+  };
+
   render() {
     const filteredContacts = this.getFilteredContacts();
     return (
@@ -64,7 +71,10 @@ export class App extends Component {
         <ContactForm onSubmit={this.formSubmitHandler} />
         <h2>Contacts</h2>
         <Filter value={this.state.filter} onChange={this.handleChangeFilter} />
-        <ContactList filteredContacts={filteredContacts} />
+        <ContactList
+          filteredContacts={filteredContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </div>
     );
   }
