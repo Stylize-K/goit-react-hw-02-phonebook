@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { ContactForm } from './ContactForm/ContactForm';
 
 export class App extends Component {
   state = {
@@ -10,8 +11,17 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
+  };
+
+  //Метод обробки сабміту форми - додаємо дані в state (дані отримуємо з компонента ContactForm)
+  formSubmitHandler = data => {
+    console.log(data);
+    this.setState({
+      contacts: [
+        ...this.state.contacts,
+        { id: this.generetedId(), name: data.name, number: data.number },
+      ],
+    });
   };
 
   //Метод генерації id. Функція nanoid()  приймає необов'язковий аргумент, що задає довжину id
@@ -19,29 +29,10 @@ export class App extends Component {
     return nanoid(5);
   };
 
-  // Метод оновлення полів інпутів
-  handleChange = event => {
+  // Метод оновлення полів фільтру
+  handleChangeFilter = event => {
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
-  };
-
-  // Метод сабміту форми
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.state);
-    const { contacts, name, number } = this.state;
-    this.setState({
-      contacts: [
-        ...contacts,
-        { id: this.generetedId(), name: name, number: number },
-      ],
-    });
-    this.resetForm();
-  };
-
-  //Метод очищення полів форми
-  resetForm = () => {
-    this.setState({ name: '', number: '' });
   };
 
   //Метод фільтрації контактів
@@ -68,42 +59,14 @@ export class App extends Component {
         }}
       >
         <h1>Phonebook</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name
-            <input
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Number
-            <input
-              type="tel"
-              name="number"
-              value={this.state.number}
-              onChange={this.handleChange}
-              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-            />
-          </label>
-          <br />
-          <button type="submit">Add contact</button>
-        </form>
+        <ContactForm onSubmit={this.formSubmitHandler} />
         <label>
           Find contacts by name
           <input
             type="text"
             name="filter"
             value={this.state.filter}
-            onChange={this.handleChange}
+            onChange={this.handleChangeFilter}
           />
         </label>
         <h2>Contacts</h2>
