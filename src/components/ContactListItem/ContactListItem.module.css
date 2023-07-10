@@ -8,6 +8,16 @@
   width: 400px;
   border-radius: 5px;
   background-color: #dbf4ff;
+  box-shadow: 6px 6px 9px -1px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 6px 6px 9px -1px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 6px 6px 9px -1px rgba(0, 0, 0, 0.47);
+  transition: scale 50ms;
+}
+
+.list_item:hover,
+.list_item:focus {
+  scale: 1.02;
+  font-weight: 500;
 }
 
 .button_delete {

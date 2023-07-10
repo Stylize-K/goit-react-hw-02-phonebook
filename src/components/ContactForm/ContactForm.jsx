@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
+import { FcAddDatabase } from 'react-icons/fc';
 
 export class ContactForm extends Component {
   state = {
@@ -27,6 +28,7 @@ export class ContactForm extends Component {
   render() {
     return (
       <form className={css.form_wrapper} onSubmit={this.handleSubmit}>
+        <FcAddDatabase size={'35px'} className={css.icon} />
         <label className={css.label}>
           Name
           <input
