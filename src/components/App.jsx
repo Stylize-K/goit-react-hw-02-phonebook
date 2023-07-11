@@ -58,6 +58,7 @@ export class App extends Component {
     this.setState(PrevState => ({
       contacts: PrevState.contacts.filter(contact => contact.id !== deleteId),
     }));
+    this.setState({ filter: '' });
   };
 
   render() {
